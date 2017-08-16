@@ -1,3 +1,5 @@
+import sbt.NameFilter
+
 name := "SomeTestActivity"
 
 version := "1.0"
@@ -9,7 +11,10 @@ assemblyMergeStrategy in assembly := {
   case x => MergeStrategy.first
 }
 
-mainClass in assembly := Some("HdfsWorker")
+
+exportJars := true
+mainClass in (Compile, run) := Some("com.example.HdfsWorker")
+mainClass in assembly := Some("com.example.HdfsWorker")
 
 libraryDependencies ++= Seq(
   "org.apache.hadoop" % "hadoop-client" % "2.7.3",
